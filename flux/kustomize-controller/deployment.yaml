@@ -24,7 +24,7 @@ spec:
         - --log-level=info
         - --log-encoding=json
         - --enable-leader-election
-        - --events-addr=http://notification-controller.flux-system.svc.cluster.local./
+        - --events-addr=http://flux-notification-controller.flux-system/
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:

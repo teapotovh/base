@@ -8,8 +8,5 @@ roleRef:
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: kustomize-controller
-    namespace: flux-system
-  - kind: ServiceAccount
-    name: helm-controller
+    name: kustomize-serviceaccount
     namespace: flux-system
