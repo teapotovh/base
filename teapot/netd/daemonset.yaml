@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset
+spec:
+  template:
+    spec:
+      serviceAccountName: serviceaccount
+      hostNetwork: true
+      tolerations:
+      - operator: Exists
+      containers:
+      - name: netd
+        image: ghcr.io/teapotovh/netd:v0.0.1
+        imagePullPolicy: Always
+        args:
+          - --net-node=$(KUBERNETES_NODE)
+          # - --log-level=debug
+        env:
+          - name: KUBERNETES_NODE
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: cni
+          mountPath: /etc/cni/net.d
+        - name: teapot-net
+          mountPath: /var/lib/teapot/net
+      volumes:
+      - name: teapot-net
+        hostPath:
+          path: /var/lib/teapot/net
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset
+spec:
+  template:
+    spec:
+      serviceAccountName: serviceaccount
+      hostNetwork: true
+      tolerations:
+      - operator: Exists
+      containers:
+      - name: ccmd
+        image: ghcr.io/teapotovh/ccmd:v0.0.1
+        args:
+          - --ccm-node=$(KUBERNETES_NODE)
+          # - --log-level=debug
+        env:
+          - name: KUBERNETES_NODE
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
