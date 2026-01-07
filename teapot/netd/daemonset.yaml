@@ -28,6 +28,13 @@ spec:
           mountPath: /etc/cni/net.d
         - name: teapot-net
           mountPath: /var/lib/teapot/net
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 128Mi
       volumes:
       - name: teapot-net
         hostPath:
