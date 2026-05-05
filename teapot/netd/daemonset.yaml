@@ -14,6 +14,7 @@ spec:
         image: ghcr.io/teapotovh/netd:v0.0.1
         imagePullPolicy: Always
         args:
+          - --log-format=json
           - --net-node=$(KUBERNETES_NODE)
           # - --log-level=debug
         env:
