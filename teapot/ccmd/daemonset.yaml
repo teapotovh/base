@@ -11,7 +11,7 @@ spec:
       - operator: Exists
       containers:
       - name: ccmd
-        image: ghcr.io/teapotovh/ccmd:v0.0.1
+        image: ghcr.io/teapotovh/ccmd:v0.0.11
         args:
           - --log-format=json
           - --ccm-node=$(KUBERNETES_NODE)
