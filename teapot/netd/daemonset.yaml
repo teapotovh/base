@@ -11,7 +11,7 @@ spec:
       - operator: Exists
       containers:
       - name: netd
-        image: ghcr.io/teapotovh/netd:v0.0.23
+        image: ghcr.io/teapotovh/netd:v0.0.0-20260801130610-0fd15491c727
         imagePullPolicy: Always
         args:
           - --log-format=json
